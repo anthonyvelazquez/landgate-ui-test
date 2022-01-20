@@ -1,0 +1,42 @@
+<div class="card mb-4">
+  <a class="position-relative">
+    <img src="https://www.teachertoolkit.co.uk/wp-content/uploads/2016/05/shutterstock_358185458.jpg"
+      class="card-img-top p-2" alt="Preview" />
+  </a>
+  <div class="card-body">
+    <a>
+      <h4 class="h5 text-nowrap text-truncate" *ngIf="!editMode">{{editablePersonData.firstName}} {{editablePersonData.lastName}}</h4>
+      <div class="row mb-2" *ngIf="editMode">
+        <div class="col-6">
+          <input type="text" class="form-control" [(ngModel)]="editablePersonData.firstName" placeholder="First Name"
+            aria-label="First Name">
+        </div>
+        <div class="col-6">
+          <input type="text" class="form-control" [(ngModel)]="editablePersonData.lastName" placeholder="Last Name"
+            aria-label="Last Name">
+        </div>
+      </div>
+    </a>
+    <ul class="list-group mb-3">
+      <li class="list-group-item small p-0" *ngIf="!editMode">{{editablePersonData.jobTitle}}</li>
+      <textarea class="form-control" [(ngModel)]="editablePersonData.jobTitle" placeholder="Job Title"
+        *ngIf="editMode"></textarea>
+    </ul>
+  </div>
+  <div class="card-footer row">
+    <div class="col" *ngIf="!editMode">
+      <span class="text-muted font-small d-block mb-2">Age</span>
+      <span class="h5 text-dark font-weight-bold">{{editablePersonData.age}}</span>
+    </div>
+    <div class="col d-flex align-items-center" *ngIf="editMode">
+      <input type="number" class="form-control" [(ngModel)]="editablePersonData.age" placeholder="Age" aria-label="Age">
+    </div>
+    <div class="col d-flex align-items-center">
+      <button class="btn btn-block btn-primary" *ngIf="!editMode" (click)="editMode = true">Edit</button>
+      <div class="btn-group" role="group" *ngIf="editMode">
+        <button type="button" class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="updatePerson()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
